@@ -5,15 +5,13 @@ import java.util.LinkedList;
 
 // REFACTOR ME
 public class GameBetter implements IGame {
-    ArrayList<Player> players = new ArrayList<>();
+    Board board = new Board();
 
     LinkedList<String> popQuestions = new LinkedList<>();
     LinkedList<String> scienceQuestions = new LinkedList<>();
     LinkedList<String> sportsQuestions = new LinkedList<>();
     LinkedList<String> rockQuestions = new LinkedList<>();
 
-    //TODO possibility to add in board/game/...
-    int currentPlayerIndex = 0;
     boolean isGettingOutOfPenaltyBox;
 
     public GameBetter() {
@@ -36,7 +34,7 @@ public class GameBetter implements IGame {
     public boolean add(String playerName) {
         // 0 what does mean?
         Player player = new Player(playerName);
-        players.add(player);
+        board.addPlayer(player);
 
         System.out.println(player.name() + " was added");
         System.out.println("They are player number " + howManyPlayers());
@@ -45,11 +43,11 @@ public class GameBetter implements IGame {
 
     //TODO possibility to add a board/game/... and ask that object how many players2 there are
     public int howManyPlayers() {
-        return players.size();
+        return board.getAmountOfPlayers();
     }
 
     public Player getCurrentPlayer() {
-        return players.get(currentPlayerIndex);
+        return board.getCurrentPlayer();
     }
 
     public void roll(int roll) {
@@ -108,8 +106,7 @@ public class GameBetter implements IGame {
 
     public boolean wasCorrectlyAnswered() {
         if (getCurrentPlayer().inPenaltyBox() && !isGettingOutOfPenaltyBox) {
-            currentPlayerIndex++;
-            if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
+            board.nextTurn();
             return true;
         } else {
             return wasCorrectAnswer();
@@ -122,8 +119,7 @@ public class GameBetter implements IGame {
 
 
         boolean winner = didPlayerWin();
-        currentPlayerIndex++;
-        if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
+        board.nextTurn();
         return winner;
     }
 
@@ -131,8 +127,7 @@ public class GameBetter implements IGame {
         System.out.println("Question was incorrectly answered");
         getCurrentPlayer().placeInPenaltyBox();
 
-        currentPlayerIndex++;
-        if (currentPlayerIndex == players.size()) currentPlayerIndex = 0;
+        board.nextTurn();
         return true;
     }
 
