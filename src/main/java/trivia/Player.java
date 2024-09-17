@@ -20,6 +20,7 @@ public final class Player {
 
     public void rollPosition(int roll) {
         place = (place + roll) % MAX_POSITION;
+        System.out.println(name + "'s new location is " + place);
     }
 
     public int place() {

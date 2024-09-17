@@ -82,12 +82,7 @@ public class GameBetter implements IGame {
     }
 
     private void movePlayer(int roll) {
-
         getCurrentPlayer().rollPosition(roll);
-
-        System.out.println(players.get(currentPlayerIndex)
-                + "'s new location is "
-                + getCurrentPlayer().place());
     }
 
     private static boolean doesPlayerGetOutOfPenaltyBox(int roll) {
