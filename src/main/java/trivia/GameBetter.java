@@ -48,10 +48,11 @@ public class GameBetter implements IGame {
         inPenaltyBox[howManyPlayers()] = false;
 
         System.out.println(player.name() + " was added");
-        System.out.println("They are player number " + players.size());
+        System.out.println("They are player number " + howManyPlayers());
         return true;
     }
 
+    //TODO possibility to add a board/game/... and ask that object how many players there are
     public int howManyPlayers() {
         return players.size();
     }
