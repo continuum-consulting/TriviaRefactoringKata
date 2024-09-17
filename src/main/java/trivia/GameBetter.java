@@ -9,7 +9,6 @@ public class GameBetter implements IGame {
 
     int[] places = new int[6];
     int[] purses = new int[6]; //Has to do with coins
-    boolean[] inPenaltyBox = new boolean[6];
 
     LinkedList<String> popQuestions = new LinkedList<>();
     LinkedList<String> scienceQuestions = new LinkedList<>();
@@ -44,7 +43,6 @@ public class GameBetter implements IGame {
 
         places[howManyPlayers()] = 0;
         purses[howManyPlayers()] = 0;
-        inPenaltyBox[howManyPlayers()] = false;
 
         System.out.println(player.name() + " was added");
         System.out.println("They are player number " + howManyPlayers());
