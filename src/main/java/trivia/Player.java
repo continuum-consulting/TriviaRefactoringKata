@@ -6,7 +6,7 @@ public final class Player {
     private final String name;
     private final int place = 0;
     private final int purse = 0;
-    private final boolean inPenaltyBox = false;
+    private boolean inPenaltyBox = false;
 
     public Player(String name) {
         this.name = name;
@@ -26,6 +26,15 @@ public final class Player {
 
     public boolean inPenaltyBox() {
         return inPenaltyBox;
+    }
+
+    public void getOutOfPenaltyBox() {
+        inPenaltyBox = false;
+    }
+
+    public void placeInPenaltyBox() {
+        System.out.println(name + " was sent to the penalty box");
+        inPenaltyBox = true;
     }
 
     @Override
