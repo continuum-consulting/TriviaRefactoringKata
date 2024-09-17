@@ -11,8 +11,6 @@ public class GameBetter implements IGame {
     LinkedList<String> sportsQuestions = new LinkedList<>();
     LinkedList<String> rockQuestions = new LinkedList<>();
 
-    boolean isGettingOutOfPenaltyBox;
-
     public GameBetter() {
         for (int i = 0; i < 50; i++) {
             popQuestions.addLast("Pop Question " + i);
