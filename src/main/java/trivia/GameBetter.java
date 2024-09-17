@@ -53,7 +53,6 @@ public class GameBetter implements IGame {
             } else {
                 System.out.println(currentPlayer + " is not getting out of the penalty box");
                 board.getCurrentPlayer().stayingInPenaltyBox();
-
             }
         } else {
             board.getCurrentPlayer().rollPosition(roll);
