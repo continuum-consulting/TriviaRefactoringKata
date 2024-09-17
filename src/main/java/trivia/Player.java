@@ -3,8 +3,10 @@ package trivia;
 import java.util.Objects;
 
 public final class Player {
+    public static final int MAX_POSITION = 12;
+
     private final String name;
-    private  int place = 0;
+    private int place = 0;
     private final int purse = 0;
     private boolean inPenaltyBox = false;
 
@@ -17,8 +19,7 @@ public final class Player {
     }
 
     public void rollPosition(int roll) {
-        place = place + roll;
-        if (place > 11) place = place - 12;
+        place = (place + roll) % MAX_POSITION;
     }
 
     public int place() {
