@@ -112,15 +112,10 @@ public class GameBetter implements IGame {
     }
 
     public boolean wasCorrectlyAnswered() {
-        if (inPenaltyBox[currentPlayer]) {
-            if (isGettingOutOfPenaltyBox) {
-                return wasCorrectAnswer();
-            } else {
-                currentPlayer++;
-                if (currentPlayer == players.size()) currentPlayer = 0;
-                return true;
-            }
-
+        if (inPenaltyBox[currentPlayer] && !isGettingOutOfPenaltyBox) {
+            currentPlayer++;
+            if (currentPlayer == players.size()) currentPlayer = 0;
+            return true;
         } else {
             return wasCorrectAnswer();
         }
