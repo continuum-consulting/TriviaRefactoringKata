@@ -3,12 +3,13 @@ package trivia;
 import java.util.Objects;
 
 public final class Player {
-    public static final int MAX_POSITION = 12;
+    public static final int MAX_POSITION = 12; //TODO move to board
 
     private final String name;
     private int place = 0;
     private int purse = 0;
     private boolean inPenaltyBox = false;
+    private boolean isGettingOutOfPenaltyBox = false;
 
     public Player(String name) {
         this.name = name;
@@ -66,5 +67,17 @@ public final class Player {
     public void addCoin() {
         purse++;
         System.out.println(name + " now has " + purse + " Gold Coins.");
+    }
+
+    public void gettingOutOfPenaltyBox() {
+        isGettingOutOfPenaltyBox = true;
+    }
+
+    public void stayingInPenaltyBox() {
+        isGettingOutOfPenaltyBox = false;
+    }
+
+    public boolean isGettingOutOfPenaltyBox() {
+        return isGettingOutOfPenaltyBox;
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Board {
     ArrayList<Player> players = new ArrayList<>();
-    int currentPlayerIndex = 0;
+    private int currentPlayerIndex = 0;
 
     public void addPlayer(Player player) {
         players.add(player);
