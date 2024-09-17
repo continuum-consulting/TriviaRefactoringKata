@@ -46,11 +46,7 @@ public final class Player {
 
     @Override
     public String toString() {
-        return "Player[" +
-                "name=" + name + ", " +
-                "place=" + place + ", " +
-                "purse=" + purse + ", " +
-                "inPenaltyBox=" + inPenaltyBox + ']';
+        return name;
     }
 
 
