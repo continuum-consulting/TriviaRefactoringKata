@@ -7,7 +7,6 @@ import java.util.LinkedList;
 public class GameBetter implements IGame {
     ArrayList<Player> players = new ArrayList<>();
 
-    int[] places = new int[6];
     int[] purses = new int[6]; //Has to do with coins
 
     LinkedList<String> popQuestions = new LinkedList<>();
@@ -41,7 +40,6 @@ public class GameBetter implements IGame {
         Player player = new Player(playerName);
         players.add(player);
 
-        places[howManyPlayers()] = 0;
         purses[howManyPlayers()] = 0;
 
         System.out.println(player.name() + " was added");
@@ -84,12 +82,12 @@ public class GameBetter implements IGame {
     }
 
     private void movePlayer(int roll) {
-        places[currentPlayerIndex] = places[currentPlayerIndex] + roll;
-        if (places[currentPlayerIndex] > 11) places[currentPlayerIndex] = places[currentPlayerIndex] - 12;
+
+        getCurrentPlayer().rollPosition(roll);
 
         System.out.println(players.get(currentPlayerIndex)
                 + "'s new location is "
-                + places[currentPlayerIndex]);
+                + getCurrentPlayer().place());
     }
 
     private static boolean doesPlayerGetOutOfPenaltyBox(int roll) {
@@ -108,15 +106,16 @@ public class GameBetter implements IGame {
     }
 
     private String currentCategory() {
-        if (places[currentPlayerIndex] == 0) return "Pop";
-        if (places[currentPlayerIndex] == 4) return "Pop";
-        if (places[currentPlayerIndex] == 8) return "Pop";
-        if (places[currentPlayerIndex] == 1) return "Science";
-        if (places[currentPlayerIndex] == 5) return "Science";
-        if (places[currentPlayerIndex] == 9) return "Science";
-        if (places[currentPlayerIndex] == 2) return "Sports";
-        if (places[currentPlayerIndex] == 6) return "Sports";
-        if (places[currentPlayerIndex] == 10) return "Sports";
+        int place = getCurrentPlayer().place();
+        if (place == 0) return "Pop";
+        if (place == 4) return "Pop";
+        if (place == 8) return "Pop";
+        if (place == 1) return "Science";
+        if (place == 5) return "Science";
+        if (place == 9) return "Science";
+        if (place == 2) return "Sports";
+        if (place == 6) return "Sports";
+        if (place == 10) return "Sports";
         return "Rock";
     }
 

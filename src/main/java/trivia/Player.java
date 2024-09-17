@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public final class Player {
     private final String name;
-    private final int place = 0;
+    private  int place = 0;
     private final int purse = 0;
     private boolean inPenaltyBox = false;
 
@@ -14,6 +14,11 @@ public final class Player {
 
     public String name() {
         return name;
+    }
+
+    public void rollPosition(int roll) {
+        place = place + roll;
+        if (place > 11) place = place - 12;
     }
 
     public int place() {
