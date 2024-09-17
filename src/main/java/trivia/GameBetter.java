@@ -26,10 +26,6 @@ public class GameBetter implements IGame {
         return "Rock Question " + index;
     }
 
-    public boolean isPlayable() {
-        return (board.getAmountOfPlayers() >= 2);
-    }
-
     public boolean add(String playerName) {
         // 0 what does mean?
         Player player = new Player(playerName);
