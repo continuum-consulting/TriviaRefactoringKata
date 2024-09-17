@@ -97,7 +97,6 @@ public class GameBetter implements IGame {
             System.out.println(rockQuestions.removeFirst());
     }
 
-
     private String currentCategory() {
         if (places[currentPlayer] == 0) return "Pop";
         if (places[currentPlayer] == 4) return "Pop";
