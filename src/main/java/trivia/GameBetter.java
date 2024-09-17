@@ -7,8 +7,6 @@ import java.util.LinkedList;
 public class GameBetter implements IGame {
     ArrayList<Player> players = new ArrayList<>();
 
-    int[] purses = new int[6]; //Has to do with coins
-
     LinkedList<String> popQuestions = new LinkedList<>();
     LinkedList<String> scienceQuestions = new LinkedList<>();
     LinkedList<String> sportsQuestions = new LinkedList<>();
@@ -39,8 +37,6 @@ public class GameBetter implements IGame {
         // 0 what does mean?
         Player player = new Player(playerName);
         players.add(player);
-
-        purses[howManyPlayers()] = 0;
 
         System.out.println(player.name() + " was added");
         System.out.println("They are player number " + howManyPlayers());
@@ -122,11 +118,8 @@ public class GameBetter implements IGame {
 
     private boolean wasCorrectAnswer() {
         System.out.println("Answer was correct!!!!");
-        purses[currentPlayerIndex]++;
-        System.out.println(players.get(currentPlayerIndex)
-                + " now has "
-                + purses[currentPlayerIndex]
-                + " Gold Coins.");
+        getCurrentPlayer().addCoin();
+
 
         boolean winner = didPlayerWin();
         currentPlayerIndex++;
@@ -144,6 +137,6 @@ public class GameBetter implements IGame {
     }
 
     private boolean didPlayerWin() {
-        return !(purses[currentPlayerIndex] == 6);
+        return !(getCurrentPlayer().purse() == 6);
     }
 }

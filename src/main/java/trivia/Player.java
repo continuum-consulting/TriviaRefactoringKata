@@ -7,7 +7,7 @@ public final class Player {
 
     private final String name;
     private int place = 0;
-    private final int purse = 0;
+    private int purse = 0;
     private boolean inPenaltyBox = false;
 
     public Player(String name) {
@@ -49,10 +49,7 @@ public final class Player {
         if (obj == this) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
         var that = (Player) obj;
-        return Objects.equals(this.name, that.name) &&
-                this.place == that.place &&
-                this.purse == that.purse &&
-                this.inPenaltyBox == that.inPenaltyBox;
+        return Objects.equals(this.name, that.name) && this.place == that.place && this.purse == that.purse && this.inPenaltyBox == that.inPenaltyBox;
     }
 
     @Override
@@ -66,4 +63,8 @@ public final class Player {
     }
 
 
+    public void addCoin() {
+        purse++;
+        System.out.println(name + " now has " + purse + " Gold Coins.");
+    }
 }
