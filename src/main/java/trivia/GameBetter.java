@@ -1,6 +1,5 @@
 package trivia;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 // REFACTOR ME
@@ -28,7 +27,7 @@ public class GameBetter implements IGame {
     }
 
     public boolean isPlayable() {
-        return (howManyPlayers() >= 2);
+        return (board.getAmountOfPlayers() >= 2);
     }
 
     public boolean add(String playerName) {
@@ -37,21 +36,12 @@ public class GameBetter implements IGame {
         board.addPlayer(player);
 
         System.out.println(player.name() + " was added");
-        System.out.println("They are player number " + howManyPlayers());
+        System.out.println("They are player number " + board.getAmountOfPlayers());
         return true;
     }
 
-    //TODO possibility to add a board/game/... and ask that object how many players2 there are
-    public int howManyPlayers() {
-        return board.getAmountOfPlayers();
-    }
-
-    public Player getCurrentPlayer() {
-        return board.getCurrentPlayer();
-    }
-
     public void roll(int roll) {
-        Player currentPlayer = getCurrentPlayer();
+        Player currentPlayer = board.getCurrentPlayer();
 
         System.out.println(currentPlayer + " is the current player");
         System.out.println("They have rolled a " + roll);
@@ -61,7 +51,7 @@ public class GameBetter implements IGame {
                 isGettingOutOfPenaltyBox = true;
 
                 System.out.println(currentPlayer + " is getting out of the penalty box");
-                getCurrentPlayer().rollPosition(roll);
+                board.getCurrentPlayer().rollPosition(roll);
                 System.out.println("The category is " + currentCategory());
                 askQuestion();
             } else {
@@ -69,7 +59,7 @@ public class GameBetter implements IGame {
                 isGettingOutOfPenaltyBox = false;
             }
         } else {
-            getCurrentPlayer().rollPosition(roll);
+            board.getCurrentPlayer().rollPosition(roll);
             System.out.println("The category is " + currentCategory());
             askQuestion();
         }
@@ -91,7 +81,7 @@ public class GameBetter implements IGame {
     }
 
     private String currentCategory() {
-        int place = getCurrentPlayer().place();
+        int place = board.getCurrentPlayer().place();
         if (place == 0) return "Pop";
         if (place == 4) return "Pop";
         if (place == 8) return "Pop";
@@ -105,7 +95,7 @@ public class GameBetter implements IGame {
     }
 
     public boolean wasCorrectlyAnswered() {
-        if (getCurrentPlayer().inPenaltyBox() && !isGettingOutOfPenaltyBox) {
+        if (board.getCurrentPlayer().inPenaltyBox() && !isGettingOutOfPenaltyBox) {
             board.nextTurn();
             return true;
         } else {
@@ -115,7 +105,7 @@ public class GameBetter implements IGame {
 
     private boolean wasCorrectAnswer() {
         System.out.println("Answer was correct!!!!");
-        getCurrentPlayer().addCoin();
+        board.getCurrentPlayer().addCoin();
 
 
         boolean winner = didPlayerWin();
@@ -125,13 +115,13 @@ public class GameBetter implements IGame {
 
     public boolean wrongAnswer() {
         System.out.println("Question was incorrectly answered");
-        getCurrentPlayer().placeInPenaltyBox();
+        board.getCurrentPlayer().placeInPenaltyBox();
 
         board.nextTurn();
         return true;
     }
 
     private boolean didPlayerWin() {
-        return !(getCurrentPlayer().purse() == 6);
+        return !(board.getCurrentPlayer().purse() == 6);
     }
 }
